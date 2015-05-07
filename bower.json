@@ -1,0 +1,31 @@
+{
+  "name": "tiny-cache",
+  "version": "0.1.0",
+  "homepage": "https://github.com/gtournie/tiny-cache",
+  "authors": [
+    "Guillaume Tournier <tournier.guillaume@gmail.com>"
+  ],
+  "description": "Tiny JavaScript library to easily store and retrieve data items (with size limit, expiration, local & session storage binding in option).",
+  "main": "cache.js",
+  "keywords": [
+    "tiny-cache",
+    "cache",
+    "js",
+    "javascript",
+    "cookie",
+    "storage",
+    "localStorage",
+    "sessionStorage",
+    "limit",
+    "expiration",
+    "browser",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "test",
+    ".*",
+    "package.json",
+    "karma.*"
+  ]
+}

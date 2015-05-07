@@ -1,0 +1,47 @@
+{
+  "name": "tiny-cache",
+  "description": "Tiny JavaScript library to easily store and retrieve data items (with size limit, expiration, local & session storage binding in option).",
+  "homepage": "http://github.com/gtournie/tiny-cache",
+  "keywords": [
+    "tiny-cache",
+    "cache",
+    "js",
+    "javascript",
+    "cookie",
+    "storage",
+    "localStorage",
+    "sessionStorage",
+    "limit",
+    "expiration",
+    "browser",
+    "node"
+  ],
+  "author": "Guillaume Tournier <tournier.guillaume@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gtournie/tiny-cache.git"
+  },
+  "main": "cache.js",
+  "version": "0.1.0",
+  "devDependencies": {
+    "jsdoc-to-markdown": "~1.0.3",
+    "karma": "~0.12.31",
+    "karma-qunit": "~0.1.4",
+    "qunit-cli": "~0.2.0",
+    "uglify-js": "2.4.x"
+  },
+  "scripts": {
+    "test": "npm run test-node",
+    "test-node": "qunit-cli test/*.js",
+    "test-browser": "npm i karma-phantomjs-launcher && ./node_modules/karma/bin/karma start",
+    "build": "uglifyjs cache.js -c \"evaluate=false\" -m --source-map cache-min.map -o cache-min.js",
+    "doc": "jsdoc2md cache.js > DOC.md"
+  },
+  "license": "MIT",
+  "files": [
+    "cache.js",
+    "cache-min.js",
+    "cache-min.map",
+    "LICENSE.md"
+  ]
+}
