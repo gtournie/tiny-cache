@@ -4,6 +4,7 @@ Tiny-Cache
 [![Build Status](https://travis-ci.org/gtournie/tiny-cache.svg?branch=master)](https://travis-ci.org/gtournie/tiny-cache) 
 ![Dependencies](https://david-dm.org/gtournie/tiny-cache.svg)
 [![Coverage Status](https://coveralls.io/repos/gtournie/tiny-cache/badge.svg?branch=master)](https://coveralls.io/r/gtournie/tiny-cache?branch=master)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/gtournie)](https://saucelabs.com/u/gtournie)
 
 ### Description ###
 
@@ -62,7 +63,7 @@ This code works with nodejs and has been tested on the following browsers:
     localCache.setItem(2, 'apple', { expires: new Date(+new Date() + 2 * oneMinute) });
     localCache.setItem(3, 'banana', { maxAge: 3 * oneMinute });
     
-    localCache.length;     /* => 3 */
+    localCache.length;                         /* => 3 */
     setTimeout(function() { localCache.length; /* => 2 */ }, oneMinute + 10);
     setTimeout(function() { localCache.length; /* => 1 */ }, 2 * oneMinute + 10);
     setTimeout(function() { localCache.length; /* => 0 */ }, 3 * oneMinute + 10);
@@ -74,7 +75,7 @@ This code works with nodejs and has been tested on the following browsers:
     var localCache = new Cache({ storage: localStorage, keyPrefix: 'test' });
     localCache.setItem(1, 'orange', { maxAge: oneMinute });
     
-    /* Now, refresh your browser, and: */
+    /* Now, refresh your browser, and type: */
     var localCache = new Cache({ storage: localStorage, keyPrefix: 'test' });
     localCache.getItem(1); /* => 'orange' */
     setTimeout(function() { localCache.length; /* => 0 */ }, oneMinute + 10);
