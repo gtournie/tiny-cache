@@ -21,7 +21,21 @@ module.exports = function(config) {
 
     // Test results reporter to use
     // https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      // Ex: 'src/**/*.js': ['coverage']
+      'cache.js': ['coverage']
+    },
+
+    coverageReporter: {
+      type:   'lcov',
+      dir:    'coverage/',
+      subdir: '.'
+    },
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher

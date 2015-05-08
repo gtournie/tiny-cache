@@ -11,6 +11,7 @@ var Cache = (/** @lends Cache */ function() {
    * Array#indexOf shim.
    * @private
    */
+  /* istanbul ignore next */
   var indexOf = ('function' === typeof [].indexOf ?
     function(arr, item) {
       return arr.indexOf(item);
@@ -140,17 +141,26 @@ var Cache = (/** @lends Cache */ function() {
    */
   proto.removeItem = function(key) {
     key = '' + key;
-    var h = this.expireHash,
-        keys, index;
-    for (var ms in h) {
-      keys  = h[ms];
-      index = indexOf(keys, key);
-      if (index >= 0) {
-        keys.splice(index, 1);
-        break;
+    var keys  = this.keys,
+        index = indexOf(keys, '' + key);
+    if (index >= 0) {
+      // Remove key from expireHash
+      var h = this.expireHash,
+          expireKeys;
+      for (var ms in h) {
+        expireKeys  = h[ms];
+        index       = indexOf(expireKeys, key);
+        if (index >= 0) {
+          expireKeys.splice(index, 1);
+          break;
+        }
       }
+
+      // Remove key + item
+      keys.splice(index, 1);
+      this.length = keys.length;
+      delete this.storage[this.keyPrefix + key];
     }
-    removeItems.call(this, key);
     return this;
   };
 
@@ -205,6 +215,7 @@ var Cache = (/** @lends Cache */ function() {
     }
   };
 
+  /* istanbul ignore if */
   if ('undefined' !== typeof module && module.exports) {
     module.exports = Cache;
   }

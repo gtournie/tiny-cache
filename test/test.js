@@ -172,9 +172,10 @@
         var cache = new Cache(options)
             .setItem(4, 'four')
             .setItem(5, 'five', { expires: new Date(+new Date() + 450), maxAge: 550 })
-            .setItem(6, 'six', { maxAge: 650 });
+            .setItem(6, 'six', { maxAge: 650 })
+            .setItem(7, 'seven', { expires: new Date(+new Date() - 200) });
 
-        equal(cache.length, 3, 'storage should contain 3 items');
+        equal(cache.length, 3, 'last item should not be added');
 
         setTimeout(function() {
           equal(cache.length, 2, 'storage should contain 2 items');
@@ -210,6 +211,23 @@
         setTimeout(function() {
           equal(cache2.length, 1, 'local maxAge should have a higher priority than global expires & maxAge');
         }, 400);
+
+        options.maxAge  = 250;
+        delete options.expires;
+        var cache3 = new Cache(options)
+            .setItem(4, 'four');
+
+        setTimeout(function() {
+          cache3.setItem(4, '4');
+
+          setTimeout(function() {
+            equal(cache3.length, 0, 'item should have been removed');
+          }, 300);
+        }, 150);
+
+        setTimeout(function() {
+          equal(cache2.length, 1, 'expiry date should have been updated');
+        }, 300);
       });
     }(type));
   }

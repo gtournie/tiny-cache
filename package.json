@@ -27,6 +27,8 @@
     "jsdoc-to-markdown": "~1.0.3",
     "karma": "~0.12.31",
     "karma-qunit": "~0.1.4",
+    "karma-coverage": "~0.3.1",
+    "coveralls": "^2.11.2",
     "qunit-cli": "~0.2.0",
     "uglify-js": "2.4.x"
   },
@@ -35,6 +37,7 @@
     "test-node": "qunit-cli test/*.js",
     "test-browser": "npm i karma-phantomjs-launcher && ./node_modules/karma/bin/karma start",
     "build": "uglifyjs cache.js -c \"evaluate=false\" -m --source-map cache-min.map -o cache-min.js",
+    "coveralls": "cat coverage/lcov.info | coveralls",
     "doc": "jsdoc2md cache.js > DOC.md"
   },
   "license": "MIT",

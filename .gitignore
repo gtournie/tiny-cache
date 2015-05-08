@@ -1,5 +1,6 @@
 raw
 node_modules
+coverage
 *.log
 *.idea
 *.swp

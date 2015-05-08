@@ -3,6 +3,7 @@ Tiny-Cache
 
 [![Build Status](https://travis-ci.org/gtournie/tiny-cache.svg?branch=master)](https://travis-ci.org/gtournie/tiny-cache) 
 ![Dependencies](https://david-dm.org/gtournie/tiny-cache.svg)
+[![Coverage Status](https://coveralls.io/repos/gtournie/tiny-cache/badge.svg?branch=master)](https://coveralls.io/r/gtournie/tiny-cache?branch=master)
 
 ### Description ###
 
