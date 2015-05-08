@@ -118,7 +118,7 @@ var Cache = (/** @lends Cache */ function() {
 
   /**
    * When passed a key name, will return that key's value.
-   * If no value is found, it will return the given defaultValue.
+   * If no value is found, return undefined or the given defaultValue.
    * @param {string} key
    * @param {*} [defaultValue]
    * @returns {*} item - /!\ The type of item will be a string if the storage is
@@ -127,9 +127,9 @@ var Cache = (/** @lends Cache */ function() {
   proto.getItem = function(key, defaultValue) {
     if (arguments.length < 2 || this.hasKey(key)) {
       var value = this.storage[this.keyPrefix + key];
-      return this.webStorage && value ?
-        value.substring(value.indexOf(':') + 1) :
-        value;
+      return this.webStorage ?
+          (value ? value.substring(value.indexOf(':') + 1) : void(0)) :
+          value;
     }
     return defaultValue;
   };

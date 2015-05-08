@@ -63,7 +63,7 @@ Purge the storage if the number of items exceed the limit.
 <a name="Cache#getItem"></a>
 ### cache.getItem(key, [defaultValue]) ⇒ <code>\*</code>
 When passed a key name, will return that key's value.
-If no value is found, it will return the given defaultValue.
+If no value is found, return undefined or the given defaultValue.
 
 **Kind**: instance method of <code>[Cache](#Cache)</code>  
 **Returns**: <code>\*</code> - item - /!\ The type of item will be a string if the storage is

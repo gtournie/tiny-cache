@@ -270,7 +270,8 @@
 
     Cache.clear();
     deepEqual([cache1.keys.length, cache2.keys.length], [0, 0], 'all cache keys should be empty');
-    deepEqual([cache1.storage, cache2.storage], [{}, {}], 'all storages should be empty');
+    var items = [cache1.getItem(4), cache1.getItem(5), cache2.getItem(6), cache2.getItem(7)];
+    deepEqual(items, [void(0), void(0), void(0), void(0)], 'all storages should be empty');
     deepEqual([cache1.length, cache2.length], [0, 0], 'all storage length should be equal to 0');
   });
 
