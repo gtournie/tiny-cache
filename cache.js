@@ -35,7 +35,7 @@ var Cache = (/** @lends Cache */ function() {
   /**
    * Creates a new Cache.
    * @class Cache
-   * @param {object} [options]
+   * @param {object} [options] - Possible options to use
    * @param {number} [options.limit=no limit] - Maximum size of the cache.
    * @param {object} [options.storage=internal storage] - Replace the
    * storage engine (localStorage, sessionStorage or any object).
@@ -55,7 +55,7 @@ var Cache = (/** @lends Cache */ function() {
     if ('object' === typeof options.storage) {
       this.webStorage = true;
       this.storage    = options.storage;
-      this.keyPrefix  = (options.keyPrefix || 'cache' + instances.length) + ':';
+      this.keyPrefix  = (options.keyPrefix || ('cache' + instances.length)) + ':';
       retrieveWebStorageKeys.call(this);
     } else {
       this.storage   = {};
@@ -92,7 +92,7 @@ var Cache = (/** @lends Cache */ function() {
    * Purge the storage if the number of items exceed the limit.
    * @param {string} key
    * @param {*} item
-   * @param {object} [options]
+   * @param {object} [options] - Possible options to use
    * @param {date|timestamp} [options.expires] - Set an expiry date for this item. After
    * this date, the item will be removed.
    * @param {maxAge} [options.maxAge] - Set the time in milliseconds for when
@@ -106,6 +106,9 @@ var Cache = (/** @lends Cache */ function() {
     this.removeItem(key);
     if (expire.call(this, key, expireAt)) {
       if (this.webStorage) {
+        if ('undefined' === typeof expireAt) {
+          expireAt = '';
+        }
         item = ++this.index + '_' + expireAt + ':' + item;
       }
       this.storage[this.keyPrefix + key] = item;
@@ -269,7 +272,7 @@ var Cache = (/** @lends Cache */ function() {
    * @returns {boolean}
    */
   function expire(key, expireAt) {
-    if (isNaN(expireAt)) {
+    if ('undefined' === typeof expireAt) {
       return true;
     }
     var now = new Date();
@@ -300,11 +303,14 @@ var Cache = (/** @lends Cache */ function() {
    */
   function calcExpireAt(options, globalOptions) {
     if (options) {
+      var expireAt;
       if (options.maxAge) {
-        return +new Date(new Date().getTime() + options.maxAge);
+        expireAt = new Date(new Date().getTime() + options.maxAge);
+        return isNaN(expireAt) ? void(0) : +expireAt;
       }
       if (options.expires) {
-        return +options.expires;
+        expireAt = options.expires;
+        return isNaN(expireAt) ? void(0) : +expireAt;
       }
     }
     return globalOptions ? calcExpireAt(globalOptions) : void(0);
@@ -350,9 +356,14 @@ var Cache = (/** @lends Cache */ function() {
    */
   function deleteStorageData(keys) {
     var storage    = this.storage,
-        keyPrefix  = this.keyPrefix;
+        keyPrefix  = this.keyPrefix,
+        webStorage = this.webStorage,
+        key;
     for (var i = 0, len = keys.length; i < len; ++i) {
-      delete storage[keyPrefix + keys[i]];
+      key = keyPrefix + keys[i];
+      if (!webStorage || storage[key]) {
+        delete storage[key];
+      }
     }
   }
 })();

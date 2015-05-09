@@ -1,6 +1,7 @@
 raw
 node_modules
 coverage
+.env
 *.log
 *.idea
 *.swp

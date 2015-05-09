@@ -20,14 +20,6 @@
           this.options = {
             storage: storageTypes[type]
           };
-        },
-        afterEach: function() {
-          if (localStorage) {
-            localStorage.clear();
-          }
-          if (sessionStorage) {
-            sessionStorage.clear();
-          }
         }
       });
 

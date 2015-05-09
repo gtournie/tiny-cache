@@ -20,7 +20,7 @@ Creates a new Cache.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>object</code> |  |  |
+| [options] | <code>object</code> |  | Possible options to use |
 | [options.limit] | <code>number</code> | <code>no limit</code> | Maximum size of the cache. |
 | [options.storage] | <code>object</code> | <code>internal storage</code> | Replace the storage engine (localStorage, sessionStorage or any object). |
 | [options.keyPrefix] | <code>string</code> | <code>&quot;cache#{index}:&quot;</code> | If options.storage is set, namespace all storage keys to avoid conflicts. of data items stored in the storage object. |
@@ -56,7 +56,7 @@ Purge the storage if the number of items exceed the limit.
 | --- | --- | --- |
 | key | <code>string</code> |  |
 | item | <code>\*</code> |  |
-| [options] | <code>object</code> |  |
+| [options] | <code>object</code> | Possible options to use |
 | [options.expires] | <code>date</code> &#124; <code>timestamp</code> | Set an expiry date for this item. After this date, the item will be removed. |
 | [options.maxAge] | <code>maxAge</code> | Set the time in milliseconds for when this item will be removed. |
 

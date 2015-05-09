@@ -24,11 +24,12 @@
   "main": "cache.js",
   "version": "0.1.0",
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "jsdoc-to-markdown": "~1.0.3",
     "karma": "~0.12.31",
-    "karma-qunit": "~0.1.4",
     "karma-coverage": "~0.3.1",
-    "coveralls": "^2.11.2",
+    "karma-qunit": "~0.1.4",
+    "node-env-file": "^0.1.7",
     "qunit-cli": "~0.2.0",
     "uglify-js": "2.4.x"
   },

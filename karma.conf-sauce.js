@@ -1,3 +1,4 @@
+require('node-env-file')(__dirname + '/.env', { raise: false });
 
 var browsers = {
   "CHROME_V26": {"base": "SauceLabs", "browserName": "chrome", "version": "26" },
@@ -46,11 +47,12 @@ module.exports = function(config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    sauceLabs: {
+    sauceLabs: (!process.env.TRAVIS_BUILD_ID ? {} : {
+      testName: 'Tiny-cache unit tests',
       build: 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')',
       startConnect: true,
       tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
-    },
+    }),
     transports: ['xhr-polling'],
     captureTimeout: 120000,
     customLaunchers: browsers
