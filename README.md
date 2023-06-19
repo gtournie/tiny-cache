@@ -53,7 +53,7 @@ This code works with nodejs and has been tested on the following browsers:
     cache.setItem('4', 'strawberry');
     cache.length;      /* => 3             */
     cache.getItem(1);  /* => undefined    */
-    cache.getItem(2)]; /* => 'strawberry' */
+    cache.getItem(4);  /* => 'strawberry' */
     
     var oneMinute = 1 * 60 * 60;
     
